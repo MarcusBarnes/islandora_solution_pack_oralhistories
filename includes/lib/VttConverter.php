@@ -21,12 +21,12 @@ class VttConverter  {
       $times = explode(' --> ', $lines[0]);
       $name = static::getName($lines[1]);
 
-      $internal_format[] = [
+      $internal_format[] = array(
         'start' => static::vttTimeToInternal($times[0]),
         'end' => static::vttTimeToInternal($times[1]),
         'name' => $name,
         'lines' => array_map(static::fixLine(), array_slice($lines, 1)), // get all the remaining lines from block (if multiple lines of text)
-      ];
+      );
     }
 
     return $internal_format;
