@@ -66,10 +66,11 @@ before_install:
   - drush en --user=1 --yes islandora_solr
   - drush en --user=1 --yes transcripts_ui
   - drush en --user=1 --yes ctools
+  - drush en --user=1 --yes simpletest
 
 script:
   - ant -buildfile sites/all/modules/islandora_solution_pack_oralhistories/build.xml lint
   - $ISLANDORA_DIR/tests/scripts/line_endings.sh sites/all/modules/islandora_solution_pack_oralhistories
   - drush coder-review --reviews=production,security,style,i18n,potx,sniffer islandora_basic_oralhistories
   - phpcpd --names *.module,*.inc,*.test sites/all/modules/islandora_solution_pack_oralhistories
-  #- drush test-run --uri=http://localhost:8081 "Islandora Oralhistories"
+  - drush test-run --uri=http://localhost:8081 "Islandora Oralhistories"
